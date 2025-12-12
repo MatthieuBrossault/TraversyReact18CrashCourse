@@ -17,26 +17,22 @@ const Navbar = () => {
                 alt="React Jobs"
               />
               <span className="hidden md:block text-white text-2xl font-bold ml-2"
-              >React Jobs</span
-              >
+              >React Jobs</span>
             </a>
             <div className="md:ml-auto">
               <div className="flex space-x-2">
                 <a
                   href="/index.html"
                   className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Home</a
-                >
+                >Home</a>
                 <a
                   href="/jobs.html"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Jobs</a
-                >
+                >Jobs</a>
                 <a
                   href="/add-job.html"
                   className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Add Job</a
-                >
+                >Add Job</a>
               </div>
             </div>
           </div>
