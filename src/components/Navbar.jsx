@@ -1,4 +1,5 @@
-import React from 'react';
+import { NavLink } from "react-router";
+
 import logo from '../assets/images/logo.png';
 
 const Navbar = () => {
@@ -10,7 +11,7 @@ const Navbar = () => {
             className="flex flex-1 items-center justify-center md:items-stretch md:justify-start"
           >
             {/* Logo */}
-            <a className="flex shrink-0 items-center mr-4" href="/index.html">
+            <NavLink className="flex shrink-0 items-center mr-4" to="/">
               <img
                 className="h-10 w-auto"
                 src={logo}
@@ -18,21 +19,25 @@ const Navbar = () => {
               />
               <span className="hidden md:block text-white text-2xl font-bold ml-2"
               >React Jobs</span>
-            </a>
+            </NavLink>
             <div className="md:ml-auto">
               <div className="flex space-x-2">
-                <a
-                  href="/index.html"
-                  className="text-white bg-black hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Home</a>
-                <a
-                  href="/jobs.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Jobs</a>
-                <a
-                  href="/add-job.html"
-                  className="text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                >Add Job</a>
+                {[
+                  { to: '/', text: 'Home' },
+                  { to: '/jobs', text: 'Jobs' },
+                  { to: '/add-job', text: 'Add Job' }
+                ].map((linkData, index) => (
+                  <NavLink
+                    key={index}
+                    to={linkData.to}
+                    className={({ isActive }) =>
+                      [
+                        isActive ? "bg-black" : "",
+                        "text-white", "hover:bg-gray-900", "hover:text-white rounded-md px-3 py-2"
+                      ].join(" ")
+                    }
+                  >{linkData.text}</NavLink>
+                ))};
               </div>
             </div>
           </div>
