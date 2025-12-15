@@ -4,7 +4,6 @@ import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 
 import './index.css'
-import App from './App.jsx'
 import Home from './pages/Home.jsx';
 import MainLayout from './layouts/MainLayout.jsx';
 import Jobs from './pages/Jobs.jsx';

@@ -1,9 +1,29 @@
+import { useState, useEffect } from 'react'
+
 import JobOffer from './JobOffer'
-import jobs from '../jobs.json'
+import Spinner from './Spinner'
 
-const JobListings = ({fullListing = false}) => {
+const JobListings = ({ fullListing = false }) => {
 
-  const listing = fullListing ? jobs : jobs.splice(0,3);
+  const [jobs, setJobs] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      const apirUrl = '/api/jobs' + (fullListing ? '' : '?_limit=3');
+      try {
+        const res = await fetch(apirUrl);
+        const data = await res.json();
+        setJobs(data);
+      } catch (error) {
+        console.log('Error fetching jobs data', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, []);
 
   return (
     <section className="bg-blue-50 px-4 py-10">
@@ -11,12 +31,18 @@ const JobListings = ({fullListing = false}) => {
         <h2 className="text-3xl font-bold text-indigo-500 mb-6 text-center">
           {fullListing ? 'Browse' : 'Recent'} Jobs
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Job Listing loop */}
-          {listing.map((job) => (
-            <JobOffer key={job.id} job={job} />
-          ))};
-        </div>
+        {/* Job Listing loop */}
+        {loading ? <Spinner loading={loading} /> :
+          (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {
+                jobs.map((job) => (
+                  <JobOffer key={job.id} job={job} />
+                ))
+              }
+            </div>
+          )
+        }
       </div>
     </section>
   )
