@@ -36,7 +36,7 @@ const JobOffer = ({ job }) => {
             {job.location}
           </div>
           <NavLink
-            to={`/job/${job.id}`}
+            to={`/jobs/${job.id}`}
             className="h-9 bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-lg text-center text-sm"
           >
             Read More
